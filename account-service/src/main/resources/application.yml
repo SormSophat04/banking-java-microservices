@@ -1,0 +1,123 @@
+server:
+  port: 8081
+
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/account_service_db
+#    username: account_service
+#    password: account12345
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.PostgreSQLDialect
+spring:
+  application:
+    name: account-service
+  profiles:
+    active: dev
+  config:
+    import: optional:configserver:http://localhost:8071/
+  datasource:
+    url: jdbc:h2:mem:test_db
+    driverClassName: org.h2.Driver
+    username: sa
+    password:
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: create-drop
+#
+  cloud:
+    function:
+      definition: updateCustomerCommunication
+    stream:
+      bindings:
+        sendCommunication-out-0:
+          destination: sent-communication
+        updateCustomerCommunication-in-0:
+          destination: communication-sent
+          group: ${spring.application.name}
+# Kafka
+      kafka:
+        binder:
+          brokers:
+            - localhost:9092
+  devtools:
+    add-properties: true
+# RabbitMQ
+#  rabbitmq:
+#    host: localhost
+#    port: 5672
+#    username: guest
+#    password: guest
+#    connection-timeout: 10s
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  info:
+    env:
+      enabled: true
+  health:
+    rabbit:
+      enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
+#join with eureka server
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:9000/eureka/
+
+#configuration info endpoint
+info:
+  app:
+    name: Account Microservice
+    description: Bank Account App
+    version: 0.0.1
+
+logging:
+  level:
+    com:
+      banking:
+        account-service: "DEBUG"
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
+
+#Circuit breaker
+resilience4j:
+
+  #
+  circuit breaker:
+    instances:
+      getCustomerDetailSpp.minimum-number-of-calls: 5
+      getCustomerDetailSpp.failure-rate-threshold: 50
+      getCustomerDetailSpp.wait-duration-in-open-state: 30000
+      getCustomerDetailSpp.permitted-number-of-calls-in-half-open-state: 2
+
+  #
+  retry:
+    instances:
+      retryCustomerDetail.max-attempts: 3
+      retryCustomerDetail.wait-duration: 2000
+
+  # Refresh limit
+  rate-limiter:
+    configs:
+      default.register-health-indicator: true
+    instances:
+      refreshLimiter.timeout-duration: 5000
+      refreshLimiter.limit-refresh-period: 5000
+      refreshLimiter.limit-for-period: 1

@@ -1,0 +1,72 @@
+## Java
+*.class
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+## Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+.mvn/wrapper/maven-wrapper.jar
+
+## Gradle
+.gradle/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+
+## IDE - IntelliJ
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+## IDE - Eclipse
+.settings/
+.project
+.classpath
+bin/
+
+## IDE - VS Code
+.vscode/
+
+## IDE - NetBeans
+nb-configuration.xml
+
+## OS
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+## Docker
+docker-compose/*.yml
+!docker-compose/**/docker-compose.yml
+docker-compose
+
+## Logs
+*.log
+logs/
+
+## Environment
+.env
+*.env.local
+application-local.yml
+application-local.properties
+
+## Spring Boot
+**/application-dev.properties
+**/application-dev.yml
+**/application-test.properties
+**/application-test.yml
