@@ -13,7 +13,6 @@ import java.util.List;
 public class CardServiceImpl implements CardService {
     private final CardRepository cardRepository;
 
-
     @Override
     public Card create(Card card) {
         return cardRepository.save(card);

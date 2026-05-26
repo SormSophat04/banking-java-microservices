@@ -14,6 +14,13 @@ public class RouteConfig {
                                 .filters(f -> f
                                         .rewritePath("/banking/accounts/(?<segment>.*)","/${segment}"))
                                 .uri("lb://ACCOUNT-SERVICE")
-                ).build();
+                )
+                .route(
+                        p -> p.path("/banking/cards/**")
+                                .filters(f -> f
+                                        .rewritePath("/banking/cards/(?<segment>.*)","/${segment}"))
+                                .uri("lb://CARD-SERVICE")
+                )
+                .build();
     }
 }

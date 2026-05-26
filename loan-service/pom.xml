@@ -120,7 +120,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>banking/${project.artifactId}:v1</image>
+                        <image>banking/${project.artifactId}:v3</image>
                     </to>
                 </configuration>
             </plugin>

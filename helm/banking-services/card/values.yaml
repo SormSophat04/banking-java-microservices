@@ -1,0 +1,25 @@
+deploymentName: card-deployment
+serviceName: card-service
+appLabel: card-service
+appName: card-service
+
+replicaCount: 1
+
+image:
+  repository: banking/card-service
+  tag: v3
+
+containerPort: 8091
+
+service:
+  type: ClusterIP
+  port: 8091
+  targetPort: 8091
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: false

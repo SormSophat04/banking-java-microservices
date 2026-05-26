@@ -1,0 +1,9 @@
+configserver:
+  extraEnv:
+    - name: SPRING_CLOUD_CONFIG_SERVER_GIT_USERNAME
+      value: "<github-username>"
+    - name: SPRING_CLOUD_CONFIG_SERVER_GIT_PASSWORD
+      value: "<github-token-or-password>"
+    # Optional: override config repository
+    # - name: SPRING_CLOUD_CONFIG_SERVER_GIT_URI
+    #   value: "https://github.com/<org-or-user>/<repo>.git"

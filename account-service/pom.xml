@@ -120,14 +120,14 @@
             <artifactId>resilience4j-timelimiter</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-stream-binder-kafka</artifactId>
-        </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-stream</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-stream-binder-kafka</artifactId>
+            </dependency>
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -190,7 +190,7 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <configuration>
                     <to>
-                        <image>banking/${project.artifactId}:v1</image>
+                        <image>banking/${project.artifactId}:v3</image>
                     </to>
                 </configuration>
             </plugin>

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: dev-env
+name: qa-env
 description: A Helm chart for Kubernetes
 
 # A chart can be either an 'application' or a 'library' chart.
@@ -24,36 +24,36 @@ version: 0.1.0
 appVersion: "1.0.0"
 
 dependencies:
-  - name: pisethbank-common
+  - name: banking-common
     version: 0.1.0
-    repository: file://../../pisethbank-common
+    repository: file://../../banking-common
 
   - name: configserver
     version: 0.1.0
-    repository: file://../../pisethbank-services/configserver
+    repository: file://../../banking-services/configserver
 
   - name: eurekaserver
     version: 0.1.0
-    repository: file://../../pisethbank-services/eurekaserver
+    repository: file://../../banking-services/eurekaserver
 
   - name: account
     version: 0.1.0
-    repository: file://../../pisethbank-services/account
+    repository: file://../../banking-services/account
 
   - name: card
     version: 0.1.0
-    repository: file://../../pisethbank-services/card
+    repository: file://../../banking-services/card
 
   - name: loan
     version: 0.1.0
-    repository: file://../../pisethbank-services/loan
+    repository: file://../../banking-services/loan
 
   - name: gatewayserver
     version: 0.1.0
-    repository: file://../../pisethbank-services/gatewayserver
+    repository: file://../../banking-services/gatewayserver
 
   - name: message
     version: 0.1.0
-    repository: file://../../pisethbank-services/message
+    repository: file://../../banking-services/message
 
 

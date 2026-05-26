@@ -1,0 +1,25 @@
+deploymentName: account-service-deployment
+serviceName: account-service
+appLabel: account-service
+appName: account-service
+
+replicaCount: 1
+
+image:
+  repository: banking/account-service
+  tag: v3
+
+containerPort: 8081
+
+service:
+  type: ClusterIP
+  port: 8081
+  targetPort: 8081
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: true

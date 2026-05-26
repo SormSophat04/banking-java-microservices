@@ -1,0 +1,25 @@
+deploymentName: eureka-server-deployment
+serviceName: eureka-server
+appLabel: eureka-server
+appName: eureka-server
+
+replicaCount: 1
+
+image:
+  repository: banking/eureka-server
+  tag: v3
+
+containerPort: 9000
+
+service:
+  type: LoadBalancer
+  port: 9000
+  targetPort: 9000
+
+appname_enabled: true
+profile_enabled: false
+config_enabled: true
+eureka_enabled: false
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: false

@@ -1,0 +1,21 @@
+{{- define "common.configmap" -}}
+{{- $namespace := .Release.Namespace | default "default" -}}
+{{- $configServerURL := .Values.global.configServerURL | default (printf "configserver:http://configserver.%s.svc.cluster.local:8071/" $namespace) -}}
+{{- $eurekaServerURL := .Values.global.eurekaServerURL | default (printf "http://eurekaserver.%s.svc.cluster.local:9001/eureka/" $namespace) -}}
+{{- $keycloakURL := .Values.global.keyCloakURL | default (printf "http://keycloak.%s.svc.cluster.local:80/realms/master/protocol/openid-connect/certs" $namespace) -}}
+{{- $otelEndpoint := .Values.global.otelExporterEndPoint | default (printf "http://tempo-grafana-tempo-distributor.%s.svc.cluster.local:4317" $namespace) -}}
+{{- $kafkaBrokerURL := .Values.global.kafkaBrokerURL | default (printf "kafka-controller-0.kafka-controller-headless.%s.svc.cluster.local:9092" $namespace) -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.global.configMapName }}
+data:
+  SPRING_PROFILES_ACTIVE: {{ .Values.global.activeProfile | quote }}
+  SPRING_CONFIG_IMPORT: {{ $configServerURL | quote }}
+  EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: {{ $eurekaServerURL | quote }}
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWK_SET_URI: {{ $keycloakURL | quote }}
+  JAVA_TOOL_OPTIONS: {{ .Values.global.openTelemetryJavaAgent | quote }}
+  OTEL_EXPORTER_OTLP_ENDPOINT: {{ $otelEndpoint | quote }}
+  OTEL_METRICS_EXPORTER: {{ .Values.global.otelMetricsExporter | quote }}
+  SPRING_CLOUD_STREAM_KAFKA_BINDER_BROKERS: {{ $kafkaBrokerURL | quote }}
+{{- end -}}

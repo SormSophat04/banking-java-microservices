@@ -1,0 +1,25 @@
+deploymentName: message-service-deployment
+serviceName: message-service
+appLabel: message-service
+appName: message-service
+
+replicaCount: 1
+
+image:
+  repository: banking/message-broker
+  tag: v3
+
+containerPort: 9080
+
+service:
+  type: ClusterIP
+  port: 9080
+  targetPort: 9080
+
+appname_enabled: true
+profile_enabled: false
+config_enabled: false
+eureka_enabled: false
+resouceserver_enabled: false
+otel_enabled: false
+kafka_enabled: true

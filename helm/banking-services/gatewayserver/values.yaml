@@ -1,0 +1,25 @@
+deploymentName: gateway-server-deployment
+serviceName: gateway-server
+appLabel: gateway-server
+appName: gateway-server
+
+replicaCount: 1
+
+image:
+  repository: banking/gateway-server
+  tag: v3
+
+containerPort: 8099
+
+service:
+  type: LoadBalancer
+  port: 8099
+  targetPort: 8099
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resouceserver_enabled: true
+otel_enabled: true
+kafka_enabled: false

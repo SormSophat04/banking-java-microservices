@@ -1,0 +1,25 @@
+deploymentName: loan-service-deployment
+serviceName: loan-service
+appLabel: loan-service
+appName: loan-service
+
+replicaCount: 1
+
+image:
+  repository: banking/loan-service
+  tag: v3
+
+containerPort: 8090
+
+service:
+  type: ClusterIP
+  port: 8090
+  targetPort: 8090
+
+appname_enabled: true
+profile_enabled: true
+config_enabled: true
+eureka_enabled: true
+resouceserver_enabled: false
+otel_enabled: true
+kafka_enabled: false
